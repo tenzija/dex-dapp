@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Work\\Code\\Practice\\Web3\\dex-dapp\\contracts\\Token.sol": {
-      "lastModificationDate": 1669565831804,
-      "contentHash": "5029a56fba5bf83b1c176be69037566b",
+      "lastModificationDate": 1669650359111,
+      "contentHash": "9a0e86d05c633dc1729488d19ce04fff",
       "sourceName": "contracts/Token.sol",
       "solcConfig": {
         "version": "0.8.9",
@@ -71,6 +71,44 @@
       ],
       "artifacts": [
         "console"
+      ]
+    },
+    "C:\\Work\\Code\\Practice\\Web3\\dex-dapp\\contracts\\Exchange.sol": {
+      "lastModificationDate": 1669659157892,
+      "contentHash": "2310a9fed11fe531dd0ef68dd62719a5",
+      "sourceName": "contracts/Exchange.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "hardhat/console.sol",
+        "./Token.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.9"
+      ],
+      "artifacts": [
+        "Exchange"
       ]
     }
   }
