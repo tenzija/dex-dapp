@@ -74,8 +74,8 @@
       ]
     },
     "C:\\Work\\Code\\Practice\\Web3\\dex-dapp\\contracts\\Exchange.sol": {
-      "lastModificationDate": 1669659157892,
-      "contentHash": "2310a9fed11fe531dd0ef68dd62719a5",
+      "lastModificationDate": 1669729892001,
+      "contentHash": "f450bf62f54710c3534725e3dca86dd7",
       "sourceName": "contracts/Exchange.sol",
       "solcConfig": {
         "version": "0.8.9",
