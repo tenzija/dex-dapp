@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "C:\\Work\\Code\\Practice\\Web3\\dex-dapp\\contracts\\Token.sol": {
-      "lastModificationDate": 1669650359111,
-      "contentHash": "9a0e86d05c633dc1729488d19ce04fff",
+      "lastModificationDate": 1669730806932,
+      "contentHash": "35716109fb0727acb86255f480ef2af6",
       "sourceName": "contracts/Token.sol",
       "solcConfig": {
         "version": "0.8.9",
@@ -74,8 +74,8 @@
       ]
     },
     "C:\\Work\\Code\\Practice\\Web3\\dex-dapp\\contracts\\Exchange.sol": {
-      "lastModificationDate": 1669729892001,
-      "contentHash": "f450bf62f54710c3534725e3dca86dd7",
+      "lastModificationDate": 1669734527393,
+      "contentHash": "8028d22d1948ef991e03f256cab0ee16",
       "sourceName": "contracts/Exchange.sol",
       "solcConfig": {
         "version": "0.8.9",

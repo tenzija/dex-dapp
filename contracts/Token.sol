@@ -45,7 +45,11 @@ contract Token {
         return true;
     }
 
-    function _transfer(address _from, address _to, uint256 _value)
+    function _transfer(
+        address _from, 
+        address _to, 
+        uint256 _value
+    )
         internal
     {
         require(_to != address(0));
