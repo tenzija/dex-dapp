@@ -14,7 +14,7 @@ describe('Exchange:', () => {
         const Exchange = await ethers.getContractFactory('Exchange')
         const Token = await ethers.getContractFactory('Token')
 
-        token1 = await Token.deploy('Sapphire', 'SAPHIR', '10000')
+        token1 = await Token.deploy('Sapphire', 'SAPPHR', '10000')
         token2 = await Token.deploy('Mock Dai', 'mDAI', '10000')
 
         accounts = await ethers.getSigners()
