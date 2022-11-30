@@ -1,33 +1,32 @@
 import { useEffect } from 'react';
-import { ethers } from 'ethers';
 import config from '../config.json';
-import TOKEN_ABI from '../abis/Token.json';
-import '../App.css';
+
+import { useDispatch } from 'react-redux';
+import { 
+  loadProvider, 
+  loadNetwork, 
+  loadAccount ,
+  loadToken
+} from '../store/interactions';
 
 
 function App() {
+  const dispatch = useDispatch()
 
   const loadBlockchainData = async() => {
-    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-    console.log(accounts[0])
+    await loadAccount(dispatch)
 
     // connect ethers to blockchain
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    const { chainId } = await provider.getNetwork()
-    console.log(chainId)
+    const provider = loadProvider(dispatch)
+    const chainId = await loadNetwork(provider, dispatch)
 
     // token smart contract
-    const token = new ethers.Contract(config[chainId].sapphire.address, TOKEN_ABI, provider)
-    console.log(token.address)
-    const symbol = await token.symbol()
-    console.log(symbol)
-
+    await loadToken(provider, config[chainId].sapphire.address, dispatch)
   }
 
   useEffect(() => {
     loadBlockchainData()
-
-  },[])
+  })
 
   return (
     <div>
