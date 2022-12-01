@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import config from '../config.json';
-
 import { useDispatch } from 'react-redux';
+
 import { 
   loadProvider, 
   loadNetwork, 
@@ -10,6 +10,7 @@ import {
   loadExchange 
 } from '../store/interactions';
 
+import Navbar from './Navbar';
 
 function App() {
   const dispatch = useDispatch()
@@ -20,8 +21,15 @@ function App() {
     // fetch current networks chainId
     const chainId = await loadNetwork(provider, dispatch)
     
+    // reload page when network changes
+    window.ethereum.on('chainChanged', () => {
+      window.location.reload()
+    })
+
     // fetch current account and balance from metamask
-    await loadAccount(provider, dispatch)
+    window.ethereum.on('accountsChanged', () => {
+      loadAccount(provider, dispatch)
+    })
 
     // load token smart contracts
     const SAPPHR = config[chainId].sapphire
@@ -41,6 +49,7 @@ function App() {
     <div>
 
       {/* Navbar */}
+      <Navbar/>
 
       <main className='exchange grid'>
         <section className='exchange__section--left grid'>

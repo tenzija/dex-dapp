@@ -1,9 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk&display=swap');
+
 
 :root {
 	--clr-primary: #525252;
 	--clr-secondary: #414141;
 	--clr-neutral: #CA3E47;
+
+	/* .exchange__header--brand h1 */
 
 	--clr-white: #F1F2F9;
 	--clr-blue: #2187D0;
@@ -20,7 +25,7 @@
 /* ------------------------------------------------------ */
 
 html {
-	font-family: "DM Sans";
+	font-family: "Major Mono Display";
 	color: var(--clr-white);
 }
 
@@ -157,6 +162,12 @@ small {
 
 .exchange__header--brand h1 {
 	display: none;
+	font-size: 26px;
+}
+
+.exchange__header--brand span {
+	color: var(--clr-neutral);
+	font-weight: bold;
 }
 
 .exchange__header--networks {
@@ -169,6 +180,11 @@ small {
 	top: 24px;
 	right: 64px;
 	transform: translate(0, -50%);
+}
+
+.exchange__header--networks option,
+.exchange__header--networks select {
+	font-family: 'Space Grotesk';
 }
 
 .exchange__header--account {
@@ -197,8 +213,9 @@ small {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	font-family: 'Space Grotesk';
 
-	background: #222D41;
+	background: var(--clr-neutral);
 	border: none;
 	color: var(--clr-white);
 
@@ -215,8 +232,10 @@ small {
 }
 
 .exchange__header--account button:hover {
-	background: var(--clr-blue);
+	background: white;
+	color: #CA3E47;
 	border: none;
+	font-weight: bold;
 }
 
 .exchange__header--account img {
@@ -366,8 +385,8 @@ small {
 /* Images */
 
 .logo {
-	width: 35px;
-	height: auto;
+	width: 50px;
+	height: 50px;
 	margin: 0 0.5em 0 0;
 }
 
@@ -495,7 +514,7 @@ input {
 	margin: 0.75em auto;
 	padding: 1.15em;
 
-	font-family: "DM Sans";
+	font-family: "Major Mono Display";
 	font-weight: 400;
 
 	outline: none;
@@ -526,7 +545,7 @@ input::placeholder {
 	border: none;
 	border-radius: 8px;
 
-	font-family: "DM Sans";
+	font-family: "Major Mono Display";
 	font-weight: 500;
 
 	cursor: pointer;
