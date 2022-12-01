@@ -5,6 +5,9 @@ require('dotenv').config()
 module.exports = {
   solidity: "0.8.9",
   networks: {
-    localhost: {}
+    localhost: {},
+    hardhat: {
+      chainId: 1337, // default is 31337
+    },
   },
 };

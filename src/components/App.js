@@ -5,8 +5,9 @@ import { useDispatch } from 'react-redux';
 import { 
   loadProvider, 
   loadNetwork, 
-  loadAccount ,
-  loadToken
+  loadAccount,
+  loadTokens,
+  loadExchange 
 } from '../store/interactions';
 
 
@@ -14,14 +15,22 @@ function App() {
   const dispatch = useDispatch()
 
   const loadBlockchainData = async() => {
-    await loadAccount(dispatch)
-
     // connect ethers to blockchain
     const provider = loadProvider(dispatch)
+    // fetch current networks chainId
     const chainId = await loadNetwork(provider, dispatch)
+    
+    // fetch current account and balance from metamask
+    await loadAccount(provider, dispatch)
 
-    // token smart contract
-    await loadToken(provider, config[chainId].sapphire.address, dispatch)
+    // load token smart contracts
+    const SAPPHR = config[chainId].sapphire
+    const mETH = config[chainId].mETH
+    await loadTokens(provider, [SAPPHR.address, mETH.address], dispatch)
+
+    // load exchange smart contract
+    const exchange = config[chainId].exchange
+    await loadExchange(provider, exchange.address, dispatch)
   }
 
   useEffect(() => {
