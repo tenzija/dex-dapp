@@ -254,7 +254,15 @@ small {
 }
 
 .component__header {
-	margin: 0 0 0.75em 0;
+	margin: 0 0 0.50em 0;
+}
+
+.component__header .h22 {
+	font-size: 22px;
+}
+
+.component__header h2 {
+	font-size: 18px;
 }
 
 .component__header span {
@@ -314,6 +322,12 @@ small {
 
 .exchange__transfers--form .flex-between {
 	padding: 0 3em 0.75em 0;
+	font-family: 'Space grotesk';
+}
+
+.exchange__transfers--form input {
+	font-family: 'Space grotesk';
+	color: var(--clr-neutral);
 }
 
 /* ------------------------------------------------------ */
@@ -450,9 +464,9 @@ hr {
 .button,
 .button--sm {
 	background: transparent;
-	color: var(--clr-blue);
+	color: var(--clr-neutral);
 
-	border: 1.5px solid var(--clr-blue);
+	border: 1.5px solid var(--clr-neutral);
 	border-radius: 10px;
 
 	width: 100%;
@@ -483,7 +497,7 @@ hr {
 .button span::after {
 	content: '';
 
-	background-image: url('./assets/right-arrow-blue.svg');
+	background-image: url('./assets/right-arrow-blue.png');
 	background-size: contain;
 	background-repeat: no-repeat;
 
@@ -569,7 +583,7 @@ input::placeholder {
 	border-radius: 8px;
 
 	font-family: "Major Mono Display";
-	font-weight: 500;
+	font-weight: bold;
 
 	cursor: pointer;
 
@@ -579,7 +593,7 @@ input::placeholder {
 }
 
 .tab--active {
-	background: var(--clr-blue);
+	background: var(--clr-neutral);
 }
 
 /* ------------------------------------------------------ */
