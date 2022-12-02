@@ -48,6 +48,8 @@ h2 {
 
 	margin: 0.375em 0;
 
+	font-family: 'Space Grotesk';
+
 	font-weight: 500;
 	font-size: clamp(0.95rem, 2vw, 1.10rem);
 }
@@ -255,6 +257,15 @@ small {
 	margin: 0 0 0.75em 0;
 }
 
+.component__header span {
+	color: var(--clr-neutral);
+}
+
+.component__header select,
+.component__header option {
+	font-family: 'Space Grotesk';
+}
+
 /* ------------------------------------------------------ */
 /* MARKET COMPONENT */
 
@@ -273,12 +284,24 @@ small {
 	width: 100%;
 	padding: 1em;
 
+	font-family: 'Space Grotesk';
+
 	font-weight: 700;
 
 	cursor: pointer;
 
 	appearance: none;
 	position: relative;
+}
+
+.exchange__markets span {
+	color: var(--clr-neutral);
+	font-weight: bold;
+	font-family: 'Space Grotesk';
+}
+
+.exchange__markets p {
+	font-family: 'Space Grotesk';
 }
 
 /* ------------------------------------------------------ */
@@ -398,7 +421,7 @@ small {
 /* Misc */
 
 hr {
-	background: #2E3950;
+	background: #CA3E47;
 
 	width: 100%;
 	height: 1px;
