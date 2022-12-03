@@ -325,10 +325,12 @@ small {
 	font-family: 'Space grotesk';
 }
 
+.exchange__transfers--form label,
 .exchange__transfers--form input {
 	font-family: 'Space grotesk';
 	color: var(--clr-neutral);
 }
+
 
 /* ------------------------------------------------------ */
 /* CHART COMPONENT */
@@ -465,6 +467,7 @@ hr {
 .button--sm {
 	background: transparent;
 	color: var(--clr-neutral);
+	font-family: 'Space grotesk';
 
 	border: 1.5px solid var(--clr-neutral);
 	border-radius: 10px;
