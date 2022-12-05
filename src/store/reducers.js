@@ -89,9 +89,7 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
         loaded: true,
         contract: action.exchange
       }
-
-    // ------------------------------------------------------------------------------
-    // BALANCE CASES
+    // balance cases
     case 'EXCHANGE_TOKEN_1_BALANCE_LOADED':
       return {
         ...state,
@@ -102,9 +100,7 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
         ...state,
         balances: [...state.balances, action.balance]
       }
-
-    // ------------------------------------------------------------------------------
-    // TRANSFER CASES (DEPOSIT & WITHDRAWS)
+    // transfer cases
     case 'TRANSFER_REQUEST':
       return {
         ...state,
@@ -138,10 +134,7 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
         },
         transferInProgress: false
       }
-
-    // ------------------------------------------------------------------------------
-    // MAKING ORDERS CASES
-
+    // making orders
     case 'NEW_ORDER_REQUEST':
       return {
         ...state,
@@ -153,7 +146,7 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
       }
 
     case 'NEW_ORDER_SUCCESS':
-      // Prevent duplicate orders
+      // prevent duplicate orders
       index = state.allOrders.data.findIndex(order => order._id === action.order._id)
 
       if(index === -1) {

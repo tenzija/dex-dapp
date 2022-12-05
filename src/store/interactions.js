@@ -66,9 +66,7 @@ export const subscribeToEvents = (exchange, dispatch) => {
   })
 }
 
-// ------------------------------------------------------------------------------
-// LOAD USER BALANCES (WALLET & EXCHANGE BALANCES)
-
+// load user balances
 
 export const loadBalances = async (exchange, tokens, account, dispatch) => {
   let balance = ethers.utils.formatUnits(await tokens[0].balanceOf(account), 18)
@@ -85,8 +83,8 @@ export const loadBalances = async (exchange, tokens, account, dispatch) => {
 
 }
 
-// ------------------------------------------------------------------------------
-// TRANSFER TOKENS (DEPOSIT & WITHDRAWS)
+
+// transfer tokens
 
 export const transferTokens =  async (provider, exchange, transferType, token, amount, dispatch) => {
   let transaction
@@ -112,8 +110,8 @@ export const transferTokens =  async (provider, exchange, transferType, token, a
   }
 }
 
-// ------------------------------------------------------------------------------
-// ORDERS (BUY & SELL)
+
+// orders (buy and sell)
 
 export const makeBuyOrder = async (provider, exchange, tokens, order, dispatch) => {
   const tokenGet = tokens[0].address
