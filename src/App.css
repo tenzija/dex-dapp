@@ -530,9 +530,21 @@ hr {
 	right: -18px;
 }
 
+.button1:hover span::after {
+	background-image: url('./assets/right-arrow-blue.png');
+	right: -18px;
+}
+
 .button--filled {
-	background: var(--clr-blue);
-	color: var(--clr-text);
+	background: var(--clr-neutral);
+	color: var(--clr-white);
+	border: 1px solid transparent;
+	
+}
+
+.button--filled:hover {
+	background: var(--clr-white);
+	color: var(--clr-neutral);
 	border: 1px solid transparent;
 }
 
@@ -549,7 +561,7 @@ hr {
 
 input {
 	background: var(--clr-primary);
-	color: var(--clr-text);
+	color: var(--clr-neutral);
 
 	border: none;
 	border-radius: 10px;
@@ -558,7 +570,7 @@ input {
 	margin: 0.75em auto;
 	padding: 1.15em;
 
-	font-family: "Major Mono Display";
+	font-family: "Space Grotesk";
 	font-weight: 400;
 
 	outline: none;

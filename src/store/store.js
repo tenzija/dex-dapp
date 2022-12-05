@@ -1,14 +1,14 @@
-import { createStore, combineReducers, applyMiddleware } from "redux";
-import thunk from "redux-thunk";
-import { composeWithDevTools } from "redux-devtools-extension";
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-// import providers
-import { provider, tokens,exchange } from "./reducers";
+/* Import Reducers */
+import { provider, tokens, exchange } from './reducers'
 
 const reducer = combineReducers({
-    provider,
-    tokens,
-    exchange
+  provider,
+  tokens,
+  exchange
 })
 
 const initialState = {}
