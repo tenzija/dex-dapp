@@ -1,5 +1,5 @@
-// SPDX-License-Identifier: UNLICENSED
-pragma solidity ^0.8.9;
+//SPDX-License-Identifier: Unlicense
+pragma solidity ^0.8.0;
 
 import "hardhat/console.sol";
 import "./Token.sol";
@@ -7,92 +7,92 @@ import "./Token.sol";
 contract Exchange {
     address public feeAccount;
     uint256 public feePercent;
-    uint256 public ordersCount;
+    uint256 public orderCount;
 
     mapping(address => mapping(address => uint256)) public tokens;
     mapping(uint256 => _Order) public orders;
-    mapping (uint256 => bool) public orderCancelled;
-    mapping (uint256 => bool) public orderFilled;
+    
+    mapping(uint256 => bool) public orderCancelled;
+    mapping(uint256 => bool) public orderFilled;
 
     event Deposit(
-        address _token, 
-        address _user, 
-        uint256 _amount, 
-        uint256 _balance
+        address token,
+        address user,
+        uint256 amount,
+        uint256 balance
     );
     event Withdraw(
-        address _token, 
-        address _user, 
-        uint256 _amount, 
-        uint256 _balance
+        address token,
+        address user,
+        uint256 amount,
+        uint256 balance
     );
     event Order(
-        uint256 _id,
-        address _user,
-        address _tokenGet,
-        uint256 _amountGet,
-        address _tokenGive,
-        uint256 _amountGive,
-        uint256 _timestamp
+        uint256 id,
+        address user,
+        address tokenGet,
+        uint256 amountGet,
+        address tokenGive,
+        uint256 amountGive,
+        uint256 timestamp
     );
     event Cancel(
-        uint256 _id,
-        address _user,
-        address _tokenGet,
-        uint256 _amountGet,
-        address _tokenGive,
-        uint256 _amountGive,
-        uint256 _timestamp
+        uint256 id,
+        address user,
+        address tokenGet,
+        uint256 amountGet,
+        address tokenGive,
+        uint256 amountGive,
+        uint256 timestamp
     );
     event Trade(
-        uint256 _id,
-        address _user,
-        address _tokenGet,
-        uint256 _amountGet,
-        address _tokenGive,
-        uint256 _amountGive,
-        address _creator,
-        uint256 _timestamp
+        uint256 id,
+        address user,
+        address tokenGet,
+        uint256 amountGet,
+        address tokenGive,
+        uint256 amountGive,
+        address creator,
+        uint256 timestamp
     );
 
     struct _Order {
         uint256 id;
-        address user;
-        address tokenGet;
+        address user; 
+        address tokenGet; 
         uint256 amountGet;
         address tokenGive;
         uint256 amountGive;
         uint256 timestamp;
     }
 
-    constructor(address _feeAccount, uint256 _feePercent) 
-    {
+    constructor(address _feeAccount, uint256 _feePercent) {
         feeAccount = _feeAccount;
         feePercent = _feePercent;
     }
 
-    /////////
-    // DEPOSIT AND WITHDRAW
-    /////////
+    function depositToken(address _token, uint256 _amount) public {
+        // transfer tokens to exchange
+        require(Token(_token).transferFrom(msg.sender, address(this), _amount));
 
-    function depositToken(address _token, uint256 _amount)
-        public
-    {
-        require(Token(_token).transferFrom(msg.sender, address(this), _amount), 'Exchange Specific Error');
+        // update user balance
+        tokens[_token][msg.sender] = tokens[_token][msg.sender] + _amount;
 
-        tokens[_token][msg.sender] += _amount;
-
+        // emit an event
         emit Deposit(_token, msg.sender, _amount, tokens[_token][msg.sender]);
     }
 
-    function withdrawToken(address _token, uint256 _amount)
-        public
-    {
-        require(_amount <= tokens[_token][msg.sender], 'User does not have enough Tokens');
-        require(Token(_token).transfer(msg.sender, _amount), 'Exchange Specific Error');
-        
-        tokens[_token][msg.sender] -= _amount;
-        
+    function withdrawToken(address _token, uint256 _amount) public {
+        // ensure user has enough tokens to withdraw
+        require(tokens[_token][msg.sender] >= _amount);
+
+        // transfer tokens to user
+        Token(_token).transfer(msg.sender, _amount);
+
+        // update user balance
+        tokens[_token][msg.sender] = tokens[_token][msg.sender] - _amount;
+
+        // emit event
         emit Withdraw(_token, msg.sender, _amount, tokens[_token][msg.sender]);
     }
 
@@ -104,54 +104,53 @@ contract Exchange {
         return tokens[_token][_user];
     }
 
-    /////////
-    // ORDERS
-    /////////
-
     function makeOrder(
-        address _tokenGet, 
-        uint256 _amountGet, 
-        address _tokenGive, 
+        address _tokenGet,
+        uint256 _amountGet,
+        address _tokenGive,
         uint256 _amountGive
-    )
-        public
-    {
-        require(balanceOf(_tokenGive, msg.sender) >= _amountGive, 'Not enough Tokens');
+    ) public {
+        // prevent orders if tokens aren't on exchange
+        require(balanceOf(_tokenGive, msg.sender) >= _amountGive);
 
-        ordersCount++;
-
-        orders[ordersCount] = _Order(
-            ordersCount, 
-            msg.sender, 
-            _tokenGet, 
-            _amountGet, 
-            _tokenGive, 
-            _amountGive, 
+        // instantiate a new order
+        orderCount ++;
+        orders[orderCount] = _Order(
+            orderCount,
+            msg.sender,
+            _tokenGet,
+            _amountGet,
+            _tokenGive,
+            _amountGive,
             block.timestamp
         );
 
+        // emit event
         emit Order(
-            ordersCount, 
-            msg.sender, 
-            _tokenGet, 
-            _amountGet, 
-            _tokenGive, 
-            _amountGive, 
+            orderCount,
+            msg.sender,
+            _tokenGet,
+            _amountGet,
+            _tokenGive,
+            _amountGive,
             block.timestamp
         );
     }
 
-    function cancelOrder(uint256 _id)
-        public
-    {
+    function cancelOrder(uint256 _id) public {
+        // fetch order
         _Order storage _order = orders[_id];
 
-        require(address(_order.user) == msg.sender, 'cant cancel other user order');
+        // ensure the caller of the function is the owner of the order
+        require(address(_order.user) == msg.sender);
 
-        require(_order.id == _id, 'order must be existing');
+        // order must exist
+        require(_order.id == _id);
 
+        // cancel the order
         orderCancelled[_id] = true;
 
+        // emit event
         emit Cancel(
             _order.id,
             msg.sender,
@@ -163,19 +162,18 @@ contract Exchange {
         );
     }
 
-    /////////
-    // EXECUTING ORDERS
-    /////////
+    function fillOrder(uint256 _id) public {
+        // must be valid orderId
+        require(_id > 0 && _id <= orderCount, "Order does not exist");
+        // order can't be filled
+        require(!orderFilled[_id]);
+        // order can't be cancelled
+        require(!orderCancelled[_id]);
 
-    function fillOrder(uint256 _id)
-        public
-    {
-        require(orderCancelled[_id] != true);
-        require(orderFilled[_id] != true);
-        require(_id > 0 && _id <= ordersCount, 'order does not exist');
-
+        // fetch order
         _Order storage _order = orders[_id];
 
+        // execute the trade
         _trade(
             _order.id,
             _order.user,
@@ -185,29 +183,41 @@ contract Exchange {
             _order.amountGive
         );
 
+        // mark order as filled
         orderFilled[_order.id] = true;
     }
 
     function _trade(
-        uint256 _orderId, 
-        address _user, 
-        address _tokenGet, 
-        uint256 _amountGet, 
-        address _tokenGive, 
+        uint256 _orderId,
+        address _user,
+        address _tokenGet,
+        uint256 _amountGet,
+        address _tokenGive,
         uint256 _amountGive
-    )
-        internal
-    {
+    ) internal {
+        // fee is paid by the user who filled the order (msg.sender)
+        // fee is deducted from _amountGet
         uint256 _feeAmount = (_amountGet * feePercent) / 100;
 
-        tokens[_tokenGet][msg.sender] -= (_amountGet + _feeAmount);
-        tokens[_tokenGet][_user] += _amountGet;
-        
-        tokens[_tokenGet][feeAccount] += _feeAmount;
+        // execute the trade
+        // msg.sender is the user who filled the order, while _user is who created the order
+        tokens[_tokenGet][msg.sender] =
+            tokens[_tokenGet][msg.sender] -
+            (_amountGet + _feeAmount);
 
-        tokens[_tokenGive][msg.sender] += _amountGive;
-        tokens[_tokenGive][_user] -= _amountGive;
+        tokens[_tokenGet][_user] = tokens[_tokenGet][_user] + _amountGet;
 
+        // charge fees
+        tokens[_tokenGet][feeAccount] =
+            tokens[_tokenGet][feeAccount] +
+            _feeAmount;
+
+        tokens[_tokenGive][_user] = tokens[_tokenGive][_user] - _amountGive;
+        tokens[_tokenGive][msg.sender] =
+            tokens[_tokenGive][msg.sender] +
+            _amountGive;
+
+        // emit trade event
         emit Trade(
             _orderId,
             msg.sender,

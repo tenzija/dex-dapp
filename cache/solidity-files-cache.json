@@ -1,9 +1,47 @@
 {
   "_format": "hh-sol-cache-2",
   "files": {
+    "C:\\Work\\Code\\Practice\\Web3\\dex-dapp\\contracts\\Exchange.sol": {
+      "lastModificationDate": 1670270159546,
+      "contentHash": "800db5cc5dc6ddcae5bbf927a9777a0c",
+      "sourceName": "contracts/Exchange.sol",
+      "solcConfig": {
+        "version": "0.8.9",
+        "settings": {
+          "optimizer": {
+            "enabled": false,
+            "runs": 200
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "hardhat/console.sol",
+        "./Token.sol"
+      ],
+      "versionPragmas": [
+        "^0.8.0"
+      ],
+      "artifacts": [
+        "Exchange"
+      ]
+    },
     "C:\\Work\\Code\\Practice\\Web3\\dex-dapp\\contracts\\Token.sol": {
-      "lastModificationDate": 1669730806932,
-      "contentHash": "35716109fb0727acb86255f480ef2af6",
+      "lastModificationDate": 1670269334901,
+      "contentHash": "b47d047aafd016e5246771bfc9e5f7da",
       "sourceName": "contracts/Token.sol",
       "solcConfig": {
         "version": "0.8.9",
@@ -32,14 +70,14 @@
         "hardhat/console.sol"
       ],
       "versionPragmas": [
-        "^0.8.9"
+        "^0.8.0"
       ],
       "artifacts": [
         "Token"
       ]
     },
     "C:\\Work\\Code\\Practice\\Web3\\dex-dapp\\node_modules\\hardhat\\console.sol": {
-      "lastModificationDate": 1669392270218,
+      "lastModificationDate": 1670270925316,
       "contentHash": "4ff3cd2f6272c9a6516e9ee4f2b967d3",
       "sourceName": "hardhat/console.sol",
       "solcConfig": {
@@ -71,44 +109,6 @@
       ],
       "artifacts": [
         "console"
-      ]
-    },
-    "C:\\Work\\Code\\Practice\\Web3\\dex-dapp\\contracts\\Exchange.sol": {
-      "lastModificationDate": 1669734527393,
-      "contentHash": "8028d22d1948ef991e03f256cab0ee16",
-      "sourceName": "contracts/Exchange.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "hardhat/console.sol",
-        "./Token.sol"
-      ],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "Exchange"
       ]
     }
   }

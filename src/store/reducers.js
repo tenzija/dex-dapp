@@ -60,7 +60,6 @@ export const tokens = (state = DEFAULT_TOKENS_STATE, action) => {
         ...state,
         balances: [...state.balances, action.balance]
       }
-
       default:
         return state
   }
@@ -89,7 +88,6 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
         loaded: true,
         contract: action.exchange
       }
-    // balance cases
     case 'EXCHANGE_TOKEN_1_BALANCE_LOADED':
       return {
         ...state,
@@ -100,7 +98,6 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
         ...state,
         balances: [...state.balances, action.balance]
       }
-    // transfer cases
     case 'TRANSFER_REQUEST':
       return {
         ...state,
@@ -130,11 +127,9 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
           isPending: false,
           isSuccessful: false,
           isError: true
-
         },
         transferInProgress: false
       }
-    // making orders
     case 'NEW_ORDER_REQUEST':
       return {
         ...state,
@@ -144,17 +139,15 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
           isSuccessful: false
         },
       }
-
     case 'NEW_ORDER_SUCCESS':
-      // prevent duplicate orders
-      index = state.allOrders.data.findIndex(order => order._id === action.order._id)
+      // prevent order duplication
+      index = state.allOrders.data.findIndex(order => order.id === action.order.id)
 
       if(index === -1) {
         data = [...state.allOrders.data, action.order]
       } else {
         data = state.allOrders.data
       }
-
       return {
         ...state,
         allOrders: {
@@ -168,7 +161,6 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
         },
         events: [action.event, ...state.events]
       }
-
     case 'NEW_ORDER_FAIL':
       return {
         ...state,
@@ -179,7 +171,6 @@ export const exchange = (state = DEFAULT_EXCHANGE_STATE, action) => {
           isError: true
         },
       }
-
       default:
         return state
   }

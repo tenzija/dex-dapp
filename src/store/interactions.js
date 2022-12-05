@@ -83,8 +83,7 @@ export const loadBalances = async (exchange, tokens, account, dispatch) => {
 
 }
 
-
-// transfer tokens
+// transfer tokens (deposit and withdraw)
 
 export const transferTokens =  async (provider, exchange, transferType, token, amount, dispatch) => {
   let transaction
@@ -109,7 +108,6 @@ export const transferTokens =  async (provider, exchange, transferType, token, a
     dispatch({ type: 'TRANSFER_FAIL' })
   }
 }
-
 
 // orders (buy and sell)
 
