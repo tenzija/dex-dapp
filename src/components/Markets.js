@@ -16,7 +16,7 @@ const Markets = () => {
     return(
       <div className='component exchange__markets'>
         <div className='component__header'>
-            <h2><span style={{fontWeight:'bold'}}>&gt;&nbsp;SELECT_</span>MARKET:</h2>
+            <h2>&gt;&nbsp;SELECT<span style={{fontWeight:'bold'}}>_MARKET:</span></h2>
         </div>
         {chainId && config[chainId] ? 
             <select name="markets" id="markets" onChange={marketHandler}>

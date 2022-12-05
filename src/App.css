@@ -720,6 +720,22 @@ table td {
 	.exchange__orders {
 		grid-column-start: 3;
 		grid-column-end: 11;
+		font-family: 'Space Grotesk';
+		
+	}
+
+	.exchange__orders label {
+		text-transform: capitalize;
+		font-size: small;
+	}
+
+	.exchange__orders .button1 span {
+		color: var(--clr-white);
+	}
+
+	.exchange__orders span {
+		color: var(--clr-neutral);
+		font-weight: bold;
 	}
 
 	.exchange__header--brand h1 {
