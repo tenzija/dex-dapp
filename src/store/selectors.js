@@ -106,3 +106,15 @@ const decorateOrderBookOrder = (order, tokens) => {
         orderFillAction: (orderType === 'buy' ? 'sell' : 'buy')
     })
 }
+
+// price chart
+
+export const priceChartSelector = createSelector(filledOrders, tokens, (orders, tokens) => {
+    if (!tokens[0] || !tokens[1]) { return }
+
+    // filter orders by selecred token
+    orders = orders.filter((o) => o.tokenGet === tokens[0].address || o.tokenGet === tokens[1].address)
+    orders = orders.filter((o) => o.tokenGive === tokens[0].address || o.tokenGive === tokens[1].address)
+
+    console.log(orders)
+})

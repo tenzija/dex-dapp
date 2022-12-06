@@ -261,6 +261,10 @@ small {
 	font-size: 22px;
 }
 
+.component__header .h16 {
+	font-size: 16px;
+}
+
 .component__header h2 {
 	font-size: 18px;
 }
@@ -756,6 +760,7 @@ table td {
 	left: 50%;
 	transform: translate(-50%, -50%);
 	margin: 0 auto;
+	font-family: 'Space Grotesk';
 }
 
 /* ------------------------------------------------------ */
