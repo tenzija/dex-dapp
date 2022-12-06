@@ -429,9 +429,7 @@ small {
 	margin: 0 0.5em 0 0;
 }
 
-.small {
-	padding-top: 5px;
-}
+
 
 .identicon {
 	margin: 0 0 0 0.60em;
@@ -554,6 +552,14 @@ hr {
 
 .button--filled:hover {
 	border: 1px solid transparent;
+}
+
+.button1 span {
+	color: var(--clr-white) !important;
+}
+
+.button1:hover span {
+	color: var(--clr-neutral) !important;
 }
 
 /* ------------------------------------------------------ */
@@ -727,10 +733,6 @@ table td {
 	.exchange__orders label {
 		text-transform: capitalize;
 		font-size: small;
-	}
-
-	.exchange__orders .button1 span {
-		color: var(--clr-white);
 	}
 
 	.exchange__orders span {

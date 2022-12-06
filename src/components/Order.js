@@ -56,9 +56,9 @@ const Order = () => {
         <form onSubmit={ isBuy ? buyHandler : sellHandler }>
 
             {isBuy ?
-                <label htmlFor="amount">&gt; Buy<span>_Amount:</span></label>
+                <label htmlFor="amount" style={{fontFamily:'Space Grotesk'}} className="spann">&gt; Buy<span style={{color:'var(--clr-neutral)',fontWeight:'bold'}}>_Amount:</span></label>
                 :
-                <label htmlFor="amount">&gt; Sell<span>_Amount:</span></label>
+                <label htmlFor="amount" style={{fontFamily:'Space Grotesk'}}>&gt; Sell<span style={{color:'var(--clr-neutral)',fontWeight:'bold'}}>_Amount:</span></label>
             }
 
             <input 
@@ -70,9 +70,9 @@ const Order = () => {
             />
 
             {isBuy ?
-                <label htmlFor="price">&gt; Buy<span>_Price:</span></label>
+                <label htmlFor="price" style={{fontFamily:'Space Grotesk'}}>&gt; Buy<span style={{color:'var(--clr-neutral)',fontWeight:'bold'}}>_Price:</span></label>
                 :
-                <label htmlFor="price">&gt; Sell<span>_Price:</span></label>
+                <label htmlFor="price" style={{fontFamily:'Space Grotesk'}}>&gt; Sell<span style={{color:'var(--clr-neutral)',fontWeight:'bold'}}>_Price:</span></label>
             }
 
             <input 
