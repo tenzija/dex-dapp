@@ -110,41 +110,6 @@
       "artifacts": [
         "console"
       ]
-    },
-    "C:\\Work\\Code\\Practice\\Web3\\dex-dapp\\contracts\\Lock.sol": {
-      "lastModificationDate": 1670333307813,
-      "contentHash": "ae66265769cc28ebdaa34881df95bc5e",
-      "sourceName": "contracts/Lock.sol",
-      "solcConfig": {
-        "version": "0.8.9",
-        "settings": {
-          "optimizer": {
-            "enabled": false,
-            "runs": 200
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [],
-      "versionPragmas": [
-        "^0.8.9"
-      ],
-      "artifacts": [
-        "Lock"
-      ]
     }
   }
 }

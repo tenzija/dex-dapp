@@ -407,6 +407,8 @@ small {
 .exchange__orderbook {
 	background: var(--clr-secondary);
 
+	font-family: 'Space Grotesk';
+
 	padding: 0.75em 1.75em;
 	margin: 0.75em;
 
@@ -414,10 +416,50 @@ small {
 	grid-column-end: 13;
 }
 
+.exchange__orderbook .title {
+	background: var(--clr-secondary);
+
+	font-family: 'Space Grotesk';
+
+	color: var(--clr-neutral);
+
+	padding: 0.75em 1.75em;
+	margin: 0.75em;
+
+	grid-column-start: 1;
+	grid-column-end: 13;
+}
+
+.exchange__orderbook .title span{
+	color: var(--clr-white);
+}
+
 .exchange__orderbook--sell tbody tr:hover,
 .exchange__orderbook--buy tbody tr:hover {
 	background: var(--clr-primary);
 	cursor: pointer;
+}
+
+.exchange__orderbook--sell th {
+	color: var(--clr-primary);
+	font-weight: bold;
+}
+
+.exchange__orderbook--buy th {
+	color: var(--clr-primary);
+	font-weight: bold;
+}
+
+.exchange__orderbook--sell th:hover {
+	cursor: default;
+	color: var(--clr-white);
+	font-weight: normal;
+}
+
+.exchange__orderbook--buy th:hover {
+	cursor: default;
+	color: var(--clr-white);
+	font-weight: normal;
 }
 
 /* ------------------------------------------------------ */
