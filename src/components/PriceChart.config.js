@@ -76,6 +76,8 @@ export const options = {
       }
     }
 }
+
+export const defaultSeries = []
   
 // Code in the series as a temporary placeholder for demonstration
   

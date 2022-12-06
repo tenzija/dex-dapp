@@ -1,6 +1,6 @@
 import { ethers } from "ethers";
 import { createSelector } from "reselect";
-import { get, groupBy, reject } from "lodash";
+import { get, groupBy, reject, maxBy, minBy } from "lodash";
 import moment from "moment";
 
 const GREEN = '#25CE8F'
@@ -116,5 +116,54 @@ export const priceChartSelector = createSelector(filledOrders, tokens, (orders, 
     orders = orders.filter((o) => o.tokenGet === tokens[0].address || o.tokenGet === tokens[1].address)
     orders = orders.filter((o) => o.tokenGive === tokens[0].address || o.tokenGive === tokens[1].address)
 
-    console.log(orders)
+    // sort orders by date desc
+    orders = orders.sort((a, b) => a.timestamp - b.timestamp)
+
+    // decorate orders aka format them
+    orders = orders.map((o) => decorateOrder(o, tokens))
+
+    let secondLastOrder, lastOrder
+    [secondLastOrder, lastOrder] = orders.slice(orders.length - 2 , orders.length)
+
+    // last price
+    const lastPrice = get(lastOrder, 'tokenPrice', 0)
+
+    // second last price
+    const secondLastPrice = get(secondLastOrder, 'tokenPrice', 0)
+
+    return ({ 
+        lastPrice,
+        lastPriceChange: (lastPrice >= secondLastPrice ? '+' : '-'),
+        series: [{
+            // candlestic infro goes in data see graphData for the correct format
+            data: buildGraphData(orders)
+        }] 
+    })
 })
+
+const buildGraphData = (orders) => {
+    // group the orders by the hour for the graph
+    orders = groupBy(orders, (o) => moment.unix(o.timestamp).startOf('hour').format())
+
+    // get each hour where data exists
+    const hours = Object.keys(orders)
+
+    // building the graph
+    const graphData = hours.map((hour) => {
+        // fetch all orders from current hour
+        const group = orders[hour]
+
+        // calculate: open, high, low, close
+        const open = group[0]
+        const high = maxBy(group, 'tokenPrice')
+        const low = minBy(group, 'tokenPrice')
+        const close = group[group.length - 1]
+        
+        return({
+            x: new Date(hour),
+            y: [open.tokenPrice, high.tokenPrice, low.tokenPrice, close.tokenPrice]
+        })
+    })
+
+    return graphData
+}
