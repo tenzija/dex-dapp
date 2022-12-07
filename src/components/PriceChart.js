@@ -20,7 +20,7 @@ const PriceChart = () => {
         <div className='component__header flex-between'>
           <div className='flex'>
   
-            <h2 className="h16">{symbols && `${symbols[0]}/${symbols[1]}`}</h2>
+            <h2>{symbols && `${symbols[0]}/${symbols[1]}`}</h2>
 
             {priceChart && (
               <div className='flex'>
@@ -45,9 +45,10 @@ const PriceChart = () => {
                 type="candlestick"
                 options={options}
                 series={
-                  priceChart ? priceChart.series
-                   : 
-                  defaultSeries}
+                  // priceChart ? priceChart.series
+                  //  : 
+                  // replace defaultSeries with series for demo chart
+                  series}
                 width='100%'
                 height='100%'
                 style={{fontFamily:'Space Grotesk'}}

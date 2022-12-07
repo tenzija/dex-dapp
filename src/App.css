@@ -22,6 +22,10 @@
 	padding: 0;
 }
 
+.space {
+	font-family: 'Space Grotesk';
+}
+
 /* ------------------------------------------------------ */
 
 html {
@@ -378,7 +382,7 @@ small {
 
 .exchange__transactions::-webkit-scrollbar,
 .exchange__trades::-webkit-scrollbar {
-	background: var(--clr-blue);
+	background: var(--clr-neutral);
 	width: 4px;
 }
 
@@ -397,12 +401,30 @@ small {
 	padding: 0.75em 1.75em;
 	margin: 0.75em;
 
+	font-family: 'Space Grotesk';
+
 	grid-column-start: 1;
 	grid-column-end: 13;
 
 	height: 215px;
 	overflow-y: scroll;
 	scrollbar-width: thin;
+}
+
+.exchange__trades td {
+	cursor: default;
+}
+
+
+.exchange__trades th {
+	color: var(--clr-primary);
+	font-weight: bold;
+}
+
+.exchange__trades th:hover {
+	cursor: default;
+	color: var(--clr-white);
+	font-weight: normal;
 }
 
 /* ------------------------------------------------------ */

@@ -50,6 +50,62 @@ const decorateOrder = (order, tokens) => {
     })
 }
 
+// all filled orders
+
+export const filledOrdersSelector = createSelector(filledOrders, tokens, (orders, tokens) => {
+    if (!tokens[0] || !tokens[1]) { return }
+    
+    // filter orders by selecred token
+    orders = orders.filter((o) => o.tokenGet === tokens[0].address || o.tokenGet === tokens[1].address)
+    orders = orders.filter((o) => o.tokenGive === tokens[0].address || o.tokenGive === tokens[1].address)
+
+    // sort orders by time asc for price comparison
+    orders = orders.sort((a, b) => a.timestamp - b.timestamp)
+
+    // decorate orderes
+    orders = decorateFilledOrders(orders, tokens)
+
+    // sort orders for dispaly
+    orders = orders.sort((a, b) => b.timestamp - a.timestamp)
+
+    return orders
+})
+
+const decorateFilledOrders = (orders, tokens) => {
+    // track previous order
+    let previousOrder = orders[0]
+
+    return (
+        orders.map((order) => {
+            // decorate each order
+            order = decorateOrder(order, tokens)
+            order = decorateFilledOrder(order, previousOrder)
+            previousOrder = order // update the previous order once its decorated
+            return order
+        })
+    )
+}
+
+const decorateFilledOrder = (order ,previousOrder) => {
+    return({
+        ...order,
+        tokenPriceClass: tokenPriceClass(order.tokenPrice, order.id, previousOrder)
+    })
+}
+
+// for the color of dispaly price
+const tokenPriceClass = (tokenPrice, orderId, previousOrder) => {
+    if (previousOrder.id === orderId) {
+        return GREEN
+    }
+
+    if (previousOrder.tokenPrice <= tokenPrice) {
+        return GREEN
+    } else {
+        return RED
+    }
+}
+
 // order book
 
 export const orderBookSelector = createSelector(openOrders, tokens, (orders, tokens) => {
