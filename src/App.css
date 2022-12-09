@@ -764,7 +764,9 @@ table td {
 /* -- Alert -- */
 
 .alert {
-	background: #222D41;
+	background: var(--clr-primary);
+
+	font-family: 'Space Grotesk';
 
 	height: 100px;
 	width: 300px;
@@ -787,7 +789,7 @@ table td {
 }
 
 .alert a {
-	color: var(--clr-blue);
+	color: var(--clr-neutral);
 	text-decoration: none;
 	margin: 0.25em;
 }
